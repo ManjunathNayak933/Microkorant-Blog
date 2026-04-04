@@ -40,8 +40,3 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
   }
 }
-
-// Required for Next.js App Router file uploads
-export const config = {
-  api: { bodyParser: false },
-}

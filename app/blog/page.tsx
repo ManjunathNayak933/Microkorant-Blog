@@ -194,7 +194,7 @@ export default function BlogIndex() {
         </div>
         <div style={{ display: 'flex', gap: 20, fontSize: 11 }}>
           <Link href="https://www.microkorant.in" style={{ color: 'var(--text-dim)' }}>MicroKorant Platform</Link>
-          <Link href="https://www.microkorant.in/login" style={{ color: 'var(--text-dim)' }}>Sign In</Link>
+          <Link href="/admin/login" style={{ color: 'var(--text-dimmer)' }}>Admin</Link>
           <a href="mailto:admin@microkorant.in" style={{ color: 'var(--text-dim)' }}>Contact</a>
         </div>
       </footer>

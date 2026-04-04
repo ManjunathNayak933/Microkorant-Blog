@@ -9,8 +9,6 @@ out/
 build/
 dist/
 
-# Data (will be created at runtime)
-data/posts.json
 
 # Environment
 .env

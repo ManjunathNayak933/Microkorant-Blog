@@ -8,7 +8,7 @@ import { getPublishedPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
   title: 'The Korant — Indian Marketing Intelligence',
-  description: 'Sharp, independent analysis on how Indian consumer brands spend — and misplace — their marketing budgets.',
+  description: 'Sharp, independent analysis on how Indian consumer brands spend and misplace their marketing budgets.',
 }
 
 function formatDate(iso: string) {
@@ -71,7 +71,7 @@ export default function BlogIndex() {
             The Korant
           </h1>
           <p style={{ fontSize: 13, color: 'var(--text-dim)', maxWidth: 440, lineHeight: 1.7, fontWeight: 300 }}>
-            Sharp, independent analysis on influencer marketing, affiliate programs, and how Indian consumer brands spend — and misplace — their budgets.
+            Sharp, independent analysis on influencer marketing, affiliate programs, and how Indian consumer brands spend and misplace their budgets.
           </p>
           <div style={{ marginTop: 18, display: 'flex', gap: 10, alignItems: 'center' }}>
             <Link href="https://www.microkorant.in" style={{ fontSize: 11, color: 'var(--accent)', fontWeight: 600, padding: '6px 16px', borderRadius: 6, border: '1px solid rgba(196,181,253,0.25)', background: 'rgba(196,181,253,0.06)' }}>
@@ -196,7 +196,7 @@ export default function BlogIndex() {
           <span style={{ fontSize: 11, color: 'var(--text-dimmer)' }}>by MicroKorant</span>
         </div>
         <div style={{ display: 'flex', gap: 20, fontSize: 11 }}>
-          <Link href="https://www.microkorant.in" style={{ color: 'var(--text-dim)' }}>MicroKorant Platform</Link>
+          <Link href="https://app.microkorant.in" style={{ color: 'var(--text-dim)' }}>MicroKorant Platform</Link>
           <Link href="/admin/login" style={{ color: 'var(--text-dimmer)' }}>Admin</Link>
           <a href="mailto:admin@microkorant.in" style={{ color: 'var(--text-dim)' }}>Contact</a>
         </div>

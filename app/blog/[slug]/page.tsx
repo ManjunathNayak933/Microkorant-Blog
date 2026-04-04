@@ -113,7 +113,7 @@ export default function BlogPost({ params }: Props) {
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'center' }}>
-              <Link href="https://www.microkorant.in" style={{ padding: '10px 22px', borderRadius: 8, fontSize: 13, fontWeight: 600, color: 'white', background: 'linear-gradient(135deg, #5b21b6, #7c3aed)', whiteSpace: 'nowrap', textAlign: 'center' }}>
+              <Link href="https://app.microkorant.in" style={{ padding: '10px 22px', borderRadius: 8, fontSize: 13, fontWeight: 600, color: 'white', background: 'linear-gradient(135deg, #5b21b6, #7c3aed)', whiteSpace: 'nowrap', textAlign: 'center' }}>
                 See the Platform →
               </Link>
               <Link href="/blog" style={{ padding: '9px 22px', borderRadius: 8, fontSize: 12, color: 'var(--text-muted)', border: '1px solid var(--border)', textAlign: 'center' }}>

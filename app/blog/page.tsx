@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPublishedPosts } from '@/lib/posts'

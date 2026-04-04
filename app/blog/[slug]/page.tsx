@@ -109,7 +109,7 @@ export default function BlogPost({ params }: Props) {
                 The attribution platform built for what you just read about.
               </div>
               <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.65 }}>
-                Track every influencer, affiliate, and publication in one dashboard. See which channels actually drive sales — not just clicks.
+                Track every influencer, affiliate, and publication in one dashboard. See which channels actually drive sales not just clicks.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'center' }}>

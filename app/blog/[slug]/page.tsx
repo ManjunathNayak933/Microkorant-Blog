@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPostBySlug, getPublishedPosts } from '@/lib/posts'
+export const dynamic = 'force-dynamic'
 
 interface Props { params: { slug: string } }
 

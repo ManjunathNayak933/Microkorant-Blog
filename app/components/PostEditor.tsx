@@ -187,6 +187,60 @@ export default function PostEditor({ post, isNew }: Props) {
           border: '1px solid var(--border)', borderBottom: 'none',
           borderRadius: '10px 10px 0 0',
         }}>
+
+          {/* Paragraph style dropdown */}
+          <select
+            title="Paragraph style"
+            onChange={e => {
+              const v = e.target.value
+              if (v === 'p')          exec('formatBlock', 'p')
+              else if (v === 'lead')  exec('formatBlock', 'p')  // applied via class below
+              else if (v === 'h1')    exec('formatBlock', 'h1')
+              else if (v === 'h2')    exec('formatBlock', 'h2')
+              else if (v === 'h3')    exec('formatBlock', 'h3')
+              else if (v === 'small') exec('formatBlock', 'p')
+              editorRef.current?.focus()
+              e.target.value = 'p'  // reset so re-selecting same option still fires
+            }}
+            defaultValue="p"
+            style={{
+              padding: '4px 8px', borderRadius: 5, border: '1px solid var(--border)',
+              background: 'rgba(255,255,255,0.06)', color: 'var(--text-muted)',
+              fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', outline: 'none',
+            }}
+          >
+            <option value="p"     style={{ background: '#1a1a28' }}>Body text</option>
+            <option value="h1"    style={{ background: '#1a1a28' }}>Heading 1</option>
+            <option value="h2"    style={{ background: '#1a1a28' }}>Heading 2</option>
+            <option value="h3"    style={{ background: '#1a1a28' }}>Heading 3</option>
+          </select>
+
+          {/* Font size */}
+          <select
+            title="Font size"
+            onChange={e => {
+              exec('fontSize', e.target.value)
+              editorRef.current?.focus()
+              e.target.value = '3'
+            }}
+            defaultValue="3"
+            style={{
+              padding: '4px 8px', borderRadius: 5, border: '1px solid var(--border)',
+              background: 'rgba(255,255,255,0.06)', color: 'var(--text-muted)',
+              fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', outline: 'none',
+            }}
+          >
+            <option value="1" style={{ background: '#1a1a28' }}>10px (XS)</option>
+            <option value="2" style={{ background: '#1a1a28' }}>13px (SM)</option>
+            <option value="3" style={{ background: '#1a1a28' }}>15px (Body)</option>
+            <option value="4" style={{ background: '#1a1a28' }}>18px (MD)</option>
+            <option value="5" style={{ background: '#1a1a28' }}>24px (LG)</option>
+            <option value="6" style={{ background: '#1a1a28' }}>32px (XL)</option>
+            <option value="7" style={{ background: '#1a1a28' }}>48px (2XL)</option>
+          </select>
+
+          <div style={{ width: 1, height: 18, background: 'var(--border)', margin: '0 3px' }}/>
+
           <ToolBtn title="Bold" onClick={() => exec('bold')} active={isActive('bold')}><strong>B</strong></ToolBtn>
           <ToolBtn title="Italic" onClick={() => exec('italic')} active={isActive('italic')}><em>I</em></ToolBtn>
           <ToolBtn title="Underline" onClick={() => exec('underline')} active={isActive('underline')}><u>U</u></ToolBtn>
@@ -251,6 +305,8 @@ export default function PostEditor({ post, isNew }: Props) {
             pointer-events: none;
             font-style: italic;
           }
+          [contenteditable] p { font-size: 15px; line-height: 1.85; color: #d0cee0; margin-bottom: 1em; }
+          [contenteditable] h1 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #f0eff4; margin: 2em 0 0.6em; line-height: 1.1; letter-spacing: -0.02em; }
           [contenteditable] h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #f0eff4; margin: 1.8em 0 0.6em; line-height: 1.2; }
           [contenteditable] h3 { font-size: 1.05rem; font-weight: 600; color: #f0eff4; margin: 1.5em 0 0.5em; }
           [contenteditable] blockquote { border-left: 3px solid #c4b5fd; padding: 0.7em 1.2em; margin: 1.5em 0; background: rgba(124,58,237,0.07); border-radius: 0 6px 6px 0; color: #9896a8; font-style: italic; }

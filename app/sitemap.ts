@@ -1,13 +1,19 @@
 import { MetadataRoute } from 'next'
 import { getPublishedPosts } from '@/lib/posts'
 
-// Force dynamic so sitemap always reflects the current state of posts
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://korant.microkorant.in'
-  const posts = getPublishedPosts()
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const base = (process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.microkorant.in').replace(/\/$/, '')
+
+  let posts: Awaited<ReturnType<typeof getPublishedPosts>> = []
+
+  try {
+    posts = await getPublishedPosts()
+  } catch (err) {
+    console.error('sitemap: failed to load posts', err)
+  }
 
   return [
     {

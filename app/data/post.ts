@@ -1,6 +1,3 @@
-import fs from 'fs'
-import path from 'path'
-
 export interface Post {
   id: string
   title: string
@@ -15,10 +12,6 @@ export interface Post {
   updatedAt: string
 }
 
-const DATA_PATH = path.join(process.cwd(), 'data', 'posts.json')
-
-// Seed articles bundled as a JS constant — used as fallback if posts.json is empty or missing.
-// This means posts always appear even if the filesystem was reset.
 const SEED_POSTS: Post[] = [
   {
     id: "1",
@@ -84,57 +77,27 @@ const SEED_POSTS: Post[] = [
     published: true,
     createdAt: "2026-03-18T09:00:00.000Z",
     updatedAt: "2026-03-18T09:00:00.000Z"
-  }
+  }// ... your existing SEED_POSTS array, keep it exactly as is
 ]
 
-function ensureDataFile() {
-  const dir = path.dirname(DATA_PATH)
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
-  if (!fs.existsSync(DATA_PATH)) {
-    // Seed with bundled posts so they always appear on first deploy
-    fs.writeFileSync(DATA_PATH, JSON.stringify(SEED_POSTS, null, 2), 'utf-8')
-  }
-}
-
 export function getAllPosts(): Post[] {
-  ensureDataFile()
-  try {
-    const raw = fs.readFileSync(DATA_PATH, 'utf-8')
-    const parsed = JSON.parse(raw) as Post[]
-    // If file exists but is empty array, seed it
-    if (parsed.length === 0) {
-      fs.writeFileSync(DATA_PATH, JSON.stringify(SEED_POSTS, null, 2), 'utf-8')
-      return SEED_POSTS
-    }
-    return parsed
-  } catch {
-    return SEED_POSTS
-  }
+  return SEED_POSTS
 }
 
 export function getPublishedPosts(): Post[] {
-  return getAllPosts()
+  return SEED_POSTS
     .filter(p => p.published)
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
-  return getAllPosts().find(p => p.slug === slug)
+  return SEED_POSTS.find(p => p.slug === slug)
 }
 
 export function getPostById(id: string): Post | undefined {
-  return getAllPosts().find(p => p.id === id)
+  return SEED_POSTS.find(p => p.id === id)
 }
 
-export function savePost(post: Post): void {
-  const posts = getAllPosts()
-  const idx = posts.findIndex(p => p.id === post.id)
-  if (idx >= 0) posts[idx] = post
-  else posts.push(post)
-  fs.writeFileSync(DATA_PATH, JSON.stringify(posts, null, 2), 'utf-8')
-}
-
-export function deletePost(id: string): void {
-  const posts = getAllPosts().filter(p => p.id !== id)
-  fs.writeFileSync(DATA_PATH, JSON.stringify(posts, null, 2), 'utf-8')
-}
+// These become no-ops on Vercel — posts are managed via code
+export function savePost(_post: Post): void {}
+export function deletePost(_id: string): void {}
